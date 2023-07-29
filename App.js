@@ -24,7 +24,7 @@ export default function App() {
     setTask(null);
   };
 
-  const completeTask = (index) => {
+  const handleDeleteTask = (index) => {
     let itemsCopy = [...taskItems];
     itemsCopy.splice(index, 1);
     setTaskItem(itemsCopy);
@@ -38,9 +38,25 @@ export default function App() {
 
         <View style={styles.items}>
           {taskItems.map((item, index) => (
-            <TouchableOpacity key={index} onPress={() => completeTask(index)}>
-              <Task text={item} />
-            </TouchableOpacity>
+            // <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+            //   <Task text={item} />
+            // </TouchableOpacity>
+
+            <Task
+              key={index}
+              text={item}
+              onDeleteTask={() => handleDeleteTask(index)} // Pass the delete function directly
+            />
+
+            // GPT Attempt
+            // <TouchableOpacity key={index} onPress={() => completeTask(index)}>
+            //   <Task text={item} onDeleteTask={() => handleDeleteTask(index)} />
+            // </TouchableOpacity>
+
+            // just desplaying the Tasks
+            // <View key={index}>
+            //   <Task text={item} />
+            // </View>
           ))}
         </View>
       </View>

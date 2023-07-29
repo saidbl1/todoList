@@ -1,16 +1,35 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
+// import App from '../App';
+
+// const completeTask = (index) => {
+//   let itemsCopy = [...taskItems];
+//   itemsCopy.splice(index, 1);
+//   setTaskItem(itemsCopy);
+// };
+
 const Task = (props) => {
+  const handleDeleteTask = () => {
+    props.onDeleteTask(); // Call the parent's onDeleteTask function
+  };
   return (
     <View style={styles.item}>
       <View style={styles.itemLeft}>
         <View style={styles.square}></View>
         <Text style={styles.itemText}>{props.text}</Text>
       </View>
-      <View style={styles.circular}>
-        <Text style={styles.circularText}>&#10007;</Text>
-      </View>
+      <TouchableOpacity onPress={props.onDeleteTask}>
+        <View style={styles.circular}>
+          <Text style={styles.circularText}>
+            {/* <TouchableOpacity
+            // key={index}
+            onPress={() => completeTask(index)}
+          ></TouchableOpacity> */}
+            &#10007;
+          </Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
